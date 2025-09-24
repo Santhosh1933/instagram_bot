@@ -1,0 +1,7 @@
+[tool.setuptools.packages.find]
+include = [
+    "image_generator",
+    "instagram_uploader",
+    "flashcard_generator",
+    "meme_prompt_generator"
+]
