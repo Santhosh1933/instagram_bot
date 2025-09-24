@@ -1,8 +1,6 @@
 import requests
 import json
 import os
-from dotenv import load_dotenv
-load_dotenv()
 ACCESS_TOKEN = os.getenv("ACCESS_TOKEN")
 BUSINESS_ACCOUNT_ID = os.getenv("BUSINESS_ACCOUNT_ID")
 APP_ID = os.getenv("APP_ID")

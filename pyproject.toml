@@ -1,5 +1,5 @@
-[tool.setuptools.packages.find]
-include = [
+[tool.setuptools]
+packages = [
     "image_generator",
     "instagram_uploader",
     "flashcard_generator",

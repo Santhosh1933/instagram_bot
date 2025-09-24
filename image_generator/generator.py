@@ -4,8 +4,6 @@ from google.genai import types
 from PIL import Image
 from io import BytesIO
 import os
-from dotenv import load_dotenv
-load_dotenv()
 API_KEY = os.getenv("API_KEY")
 
 class GeminiImageGenerator:
