@@ -1,7 +1,7 @@
 import cloudinary
 import cloudinary.uploader
-from image_generator import GeminiImageGenerator
-from instagram_uploader import InstagramUploader
+from generator import GeminiImageGenerator
+from uploader import InstagramUploader
 from meme_prompt_generator import GeminiPromptGenerator
 import os
 from dotenv import load_dotenv

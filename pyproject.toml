@@ -1,8 +1,0 @@
-[project]
-name = "instagram_bot"
-version = "0.1.0"
-description = "Instagram bot for flashcards and memes"
-authors = [{ name = "Santhosh1933" }]
-
-[tool.setuptools]
-package-dir = {"" = "src"}
