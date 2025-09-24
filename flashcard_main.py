@@ -46,7 +46,8 @@ TOPICS = [
 CAPTION = "#ProgrammingFlashcards #DevLife #LearnCoding #StudySmart"
 
 if __name__ == "__main__":
-    generator = FlashcardGenerator()
+    # Ensure API_KEY is loaded and passed explicitly
+    generator = FlashcardGenerator(api_key=API_KEY)
     uploader = InstagramUploader(ACCESS_TOKEN, BUSINESS_ACCOUNT_ID)
 
     # Step 0: Select random topic
