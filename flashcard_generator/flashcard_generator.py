@@ -4,7 +4,10 @@ from google.genai import types
 from PIL import Image
 from io import BytesIO
 import time
-from constants import API_KEY
+import os
+from dotenv import load_dotenv
+load_dotenv()
+API_KEY = os.getenv("API_KEY")
 
 class FlashcardGenerator:
     def __init__(self, api_key: str = API_KEY, max_retries: int = 5, backoff_factor: int = 2):

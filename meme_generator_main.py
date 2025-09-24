@@ -3,7 +3,14 @@ import cloudinary.uploader
 from image_generator import GeminiImageGenerator
 from instagram_uploader import InstagramUploader
 from meme_prompt_generator import GeminiPromptGenerator
-from constants import API_KEY, ACCESS_TOKEN, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET, BUSINESS_ACCOUNT_ID
+import os
+from dotenv import load_dotenv
+load_dotenv()
+API_KEY = os.getenv("API_KEY")
+ACCESS_TOKEN = os.getenv("ACCESS_TOKEN")
+CLOUDINARY_API_KEY = os.getenv("CLOUDINARY_API_KEY")
+CLOUDINARY_API_SECRET = os.getenv("CLOUDINARY_API_SECRET")
+BUSINESS_ACCOUNT_ID = os.getenv("BUSINESS_ACCOUNT_ID")
 
 # Configure Cloudinary
 cloudinary.config(

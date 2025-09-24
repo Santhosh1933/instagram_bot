@@ -3,7 +3,10 @@ from google import genai
 from google.genai import types
 import random
 import time
-from constants import API_KEY
+import os
+from dotenv import load_dotenv
+load_dotenv()
+API_KEY = os.getenv("API_KEY")
 
 FLAGS = [
     "js meme", "developer life", "python memory leak", "debugging chaos",

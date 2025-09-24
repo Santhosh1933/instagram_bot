@@ -1,6 +1,12 @@
 import requests
 import json
-from constants import ACCESS_TOKEN, BUSINESS_ACCOUNT_ID, APP_ID, APP_SECRET
+import os
+from dotenv import load_dotenv
+load_dotenv()
+ACCESS_TOKEN = os.getenv("ACCESS_TOKEN")
+BUSINESS_ACCOUNT_ID = os.getenv("BUSINESS_ACCOUNT_ID")
+APP_ID = os.getenv("APP_ID")
+APP_SECRET = os.getenv("APP_SECRET")
 
 class InstagramUploader:
     def __init__(self, access_token: str = ACCESS_TOKEN, business_account_id: str = BUSINESS_ACCOUNT_ID):

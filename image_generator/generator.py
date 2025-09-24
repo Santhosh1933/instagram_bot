@@ -3,7 +3,10 @@ from google import genai
 from google.genai import types
 from PIL import Image
 from io import BytesIO
-from constants import API_KEY
+import os
+from dotenv import load_dotenv
+load_dotenv()
+API_KEY = os.getenv("API_KEY")
 
 class GeminiImageGenerator:
     def __init__(self, api_key: str = API_KEY):
