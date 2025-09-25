@@ -1,10 +1,11 @@
 import random
 import cloudinary
 import cloudinary.uploader
-from flashcard_generator import FlashcardGenerator
-from instagram_uploader import InstagramUploader
 import os
 from dotenv import load_dotenv
+
+from flashcard_generator import FlashcardGenerator
+from uploader import InstagramUploader
 load_dotenv()
 API_KEY = os.getenv("API_KEY")
 ACCESS_TOKEN = os.getenv("ACCESS_TOKEN")
