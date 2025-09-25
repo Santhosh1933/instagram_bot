@@ -21,10 +21,10 @@ class GeminiPromptGenerator:
     def generate_creative_prompt(self, flag: str) -> str:
         """
         Use Gemini AI to generate a high-quality meme prompt dynamically.
-        Retries automatically if Gemini API is overloaded.
+        Tries gemini-2.5-flash-lite first, falls back to gemini-2.0-flash if needed.
         """
         ai_prompt = (
-            f"Generate a creative, funny, absurd 16:9 programming meme prompt "
+            f"Generate a creative, funny, absurd programming meme prompt "
             f"based on this idea: '{flag}'. "
             f"The prompt should describe the scene, the characters, the chaos, "
             f"a humorous caption at the bottom, and visual style details "
@@ -32,26 +32,30 @@ class GeminiPromptGenerator:
             f"Return only the meme prompt text."
         )
 
-        for attempt in range(self.max_retries):
-            try:
-                response = self.client.models.generate_content(
-                    model="gemini-2.0-flash-lite",
-                    contents=[ai_prompt],
-                    config=types.GenerateContentConfig(response_modalities=["TEXT"])
-                )
+        models_to_try = ["gemini-2.5-flash-lite", "gemini-2.0-flash"]
+        last_exception = None
+        for model_name in models_to_try:
+            for attempt in range(self.max_retries):
+                try:
+                    response = self.client.models.generate_content(
+                        model=model_name,
+                        contents=[ai_prompt],
+                        config=types.GenerateContentConfig(response_modalities=["TEXT"])
+                    )
 
-                for part in response.candidates[0].content.parts:
-                    if part.text:
-                        return part.text.strip()
+                    for part in response.candidates[0].content.parts:
+                        if part.text:
+                            return part.text.strip()
 
-                raise Exception("No text returned from Gemini API")
+                    raise Exception("No text returned from Gemini API")
 
-            except Exception as e:
-                wait_time = self.backoff_factor ** attempt
-                print(f"[Retry {attempt+1}/{self.max_retries}] Gemini API failed: {e}. Retrying in {wait_time}s...")
-                time.sleep(wait_time)
-
-        raise Exception("Max retries reached. Gemini API is unavailable. Try again later.")
+                except Exception as e:
+                    last_exception = e
+                    wait_time = self.backoff_factor ** attempt
+                    print(f"[Retry {attempt+1}/{self.max_retries}] Gemini API failed (model {model_name}): {e}. Retrying in {wait_time}s...")
+                    time.sleep(wait_time)
+            # If all retries for this model fail, try next model
+        raise Exception(f"Max retries reached. Gemini API is unavailable. Last error: {last_exception}")
 
     def get_random_flag(self):
         return random.choice(FLAGS)

@@ -82,4 +82,5 @@ class InstagramUploader:
 
     def upload_image(self, image_url: str, caption: str):
         media_id = self.create_media(image_url, caption)
+        print(f"[DEBUG] Created media ID: {media_id}, proceeding to publish...")
         return self.publish_media(media_id)
