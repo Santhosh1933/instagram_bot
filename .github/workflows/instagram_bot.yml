@@ -1,8 +1,8 @@
 name: Instagram Bot Daily Runs
 
 on:
-  schedule:
-    - cron: "0 7,13,19 * * *"
+  # schedule:
+  #   - cron: "0 7,13,19 * * *"
   workflow_dispatch:
 
 jobs:
